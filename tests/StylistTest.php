@@ -53,6 +53,24 @@
             $this->assertEquals([$new_stylist, $new_stylist2], $result);
         }
 
+        function test_deleteStylist()
+        {
+            ///   Arrange   ///
+            $stylist_name = "Vicki";
+            $new_stylist = new Stylist($stylist_name);
+            $new_stylist->save();
+
+            $stylist_name2 = "Sami";
+            $new_stylist2 = new Stylist($stylist_name);
+            $new_stylist2->save();
+
+            ///   Act   ///
+            $new_stylist->deleteStylist();
+
+            ///   Assert   ///
+            $this->assertEquals([$new_stylist2], Stylist::getAll());
+        }
+
 
     }
 ?>

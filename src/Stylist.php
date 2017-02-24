@@ -27,12 +27,14 @@
             return $this->id;
         }
 
+        /////     METHODS     /////
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getStylistName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        /////     Static METHODS     /////
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists;");
