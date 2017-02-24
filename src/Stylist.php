@@ -27,5 +27,31 @@
             return $this->id;
         }
 
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getStylistName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists;");
+        }
+
+        static function getAll()
+        {
+            $all_stylists = array();
+            $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists ORDER BY name;");
+            foreach($returned_stylists as $stylist) {
+                $stylist_name = $stylist['name'];
+                $id = $stylist['id'];
+                $new_stylist = new Stylist($stylist_name, $id);
+                array_push($all_stylists, $new_stylist);
+            }
+            return $all_stylists;
+        }
+
+
+
     }
 ?>
