@@ -61,18 +61,18 @@
             return $all_stylists;
         }
 
-        // static function findStylist($search_id)
-        // {
-        //     $found_stylist = null;
-        //     $all_stylists = Stylist::getAll();
-        //     foreach($all_stylists as $stylist) {
-        //         $found_id = $stylist->getId();
-        //         if ($search_id == $found_id) {
-        //             $found_stylist = $stylist;
-        //         }
-        //     }
-        //     return $found_stylist;
-        // }
+        static function findStylist($search_id)
+        {
+            $found_stylist = null;
+            $all_stylists = Stylist::getAll();
+            foreach($all_stylists as $stylist) {
+                $found_id = $stylist->getId();
+                if ($search_id == $found_id) {
+                    $found_stylist = $stylist;
+                }
+            }
+            return $found_stylist;
+        }
 
 
         /////     end Static METHODS     /////
