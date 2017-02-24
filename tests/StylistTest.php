@@ -71,6 +71,23 @@
             $this->assertEquals([$new_stylist2], Stylist::getAll());
         }
 
+        function test_findCuisine()
+        {
+            ///   Arrange   ///
+            $stylist_name = "Vicki";
+            $new_stylist = new Stylist($stylist_name);
+            $new_stylist->save();
+
+            $stylist_name2 = "Sami";
+            $new_stylist2 = new Stylist($stylist_name);
+            $new_stylist2->save();
+
+            ///   Act   ///
+            $result = Stylist::findStylist($new_stylist->getId());
+
+            ///   Assert   ///
+            $this->assertEquals($new_stylist, $result);
+        }
 
     }
 ?>

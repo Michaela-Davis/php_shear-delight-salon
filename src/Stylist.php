@@ -27,7 +27,7 @@
             return $this->id;
         }
 
-        /////     METHODS     /////
+        /////     begin METHODS     /////
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getStylistName()}');");
@@ -39,8 +39,10 @@
             $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
+        /////     end METHODS     /////
 
-        /////     Static METHODS     /////
+
+        /////     begin Static METHODS     /////
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists;");
@@ -59,7 +61,21 @@
             return $all_stylists;
         }
 
+        // static function findStylist($search_id)
+        // {
+        //     $found_stylist = null;
+        //     $all_stylists = Stylist::getAll();
+        //     foreach($all_stylists as $stylist) {
+        //         $found_id = $stylist->getId();
+        //         if ($search_id == $found_id) {
+        //             $found_stylist = $stylist;
+        //         }
+        //     }
+        //     return $found_stylist;
+        // }
 
+
+        /////     end Static METHODS     /////
 
     }
 ?>
