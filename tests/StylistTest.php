@@ -71,7 +71,7 @@
             $this->assertEquals([$new_stylist2], Stylist::getAll());
         }
 
-        function test_findCuisine()
+        function test_findStylist()
         {
             ///   Arrange   ///
             $stylist_name = "Vicki";
@@ -87,6 +87,22 @@
 
             ///   Assert   ///
             $this->assertEquals($new_stylist, $result);
+        }
+
+        function test_updateStylist()
+        {
+            ///   Arrange   ///
+            $stylist_name = "Vicki";
+            $new_stylist = new Stylist($stylist_name);
+            $new_stylist->save();
+
+            $updated_name = "Sami";
+
+            ///   Act   ///
+            $new_stylist->updateStylist($updated_name);
+
+            ///   Assert   ///
+            $this->assertEquals("Sami", $new_stylist->getStylistName());
         }
 
     }
