@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    {% include '/components/head.html.twig' %}
+    <body>
+        {% include '/components/headerBanner.html.twig' %}
+
+        <div class="container">
+            <div class="row" id="stylist-edit-column">
+                <div class="col-md-7">
+                </div>
+                <div class="col-md-5">
+                    <div id="stylist-edit-section">
+                        <h1>Edit &nbsp;Stylist</h1>
+                        <form method="post" id="stylist-edit-form" action="/stylists/{{stylist.getId}}">
+                            <input type="hidden" value="patch" name="_method">
+
+                            <label for="name">Rename your stylist type: </label> <br><br>
+                            <input type="text" name="name" id="name" value="{{ stylist.getStylistName }}">
+                            <button class="btn btn-success" type="submit"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
+                        </form>
+
+
+                        <p class="home-link"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '/components/footerBanner.html.twig' %}
+    </body>
+</html>

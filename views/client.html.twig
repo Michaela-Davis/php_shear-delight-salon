@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    {% include '/components/head.html.twig' %}
+    <body>
+        {% include '/components/headerBanner.html.twig' %}
+
+        <div class="container">
+            <div class="row" id="client-page">
+                <div class="col-md-5">
+                    <div id="client-details">
+                        <h1>{{client.getClientName}}</h1>
+
+                        <p>Phone: &nbsp;<span class="clients-info">{{client.getPhone}}</span></p> <br>
+
+                        <p><a href="/stylists/{{client.getStylistId}}"><i class="fa fa-scissors" aria-hidden="true"></i>&nbsp; Return to Stylists page</a></p>
+                        <p class="home-link"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                </div>
+            </div>
+        </div>
+        {% include '/components/footerBanner.html.twig' %}
+    </body>
+</html>

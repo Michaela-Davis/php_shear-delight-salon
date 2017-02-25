@@ -12,12 +12,12 @@
                         <form method="post" action="/clients/{{client.getClientId}}" id="client-edit-form">
                             <input type="hidden" value="patch" name="_method">
 
-                            <input type="hidden" name="cuisine_id" value="{{ client.getCuisineId }}">
+                            <input type="hidden" name="stylist_id" value="{{ client.getStylistId }}">
 
                             <label for="name">Update name:</label>
                             <input type="text" name="name" id="name" value="{{ client.getClientName }}"><br><br>
                             <label for="phone">Update phone:</label>
-                            <input type="text" name="phone" id="phone" value="{{ client.getKeywords }}"><br><br>
+                            <input type="text" name="phone" id="phone" value="{{ client.getPhone }}"><br><br>
                             <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
                         </form>
 
