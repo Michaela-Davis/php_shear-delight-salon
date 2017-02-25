@@ -48,8 +48,6 @@
         }
 
 
-
-
         /////     begin METHODS     /////
         function save()
         {
@@ -77,10 +75,10 @@
             $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients ORDER BY name;");
             $all_clients = array();
             foreach($returned_clients as $client) {
+                $id = $client['id'];
                 $client_name = $client['name'];
                 $phone = $client['phone'];
                 $stylist_id = $client['stylist_id'];
-                $id = $client['id'];
                 $new_client = new Client($id, $client_name, $phone, $stylist_id);
                 array_push($all_clients, $new_client);
             }
