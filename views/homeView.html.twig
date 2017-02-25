@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    {% include '/components/head.html.twig' %}
+    <body>
+        {% include '/components/headerBanner.html.twig' %}
+        <div class="container">
+            <div class="row" id="stylists-page">
+                <div class="col-lg-7">
+                </div>
+                <div class="col-lg-5">
+                    <div id="stylists-list">
+                        <h1>Stylists</h1>
+                        <form method="post" action="/add-stylist" id="add-stylist-form">
+                            <input type="text" name="name" placeholder="New stylist">
+                            &nbsp;&nbsp;
+                            <button class="btn btn-info" type="submit"><i class="fa fa-scissors" aria-hidden="true"></i> Add &nbsp;</button>
+                        </form>
+                        {% if blank_form is not empty %}
+                        <p>Please enter a stylist name and resubmit!</p>
+                        <br><br>
+                        <p class="home-link"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+                        {% else %}
+
+                            {% if stylists is not empty %}
+                                <ul>
+                                {% for stylist in stylists %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <li>
+                                                <a href="/stylists/{{ stylist.getID }}">{{stylist.getStylistName}}</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <form action="/stylists/{{stylist.getId}}/edit" method="post">
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-1">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <form action="/stylists/{{stylist.getId}}" method="post">
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                        </div>
+                                {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p> There are no stylists yet! </p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '/components/footerBanner.html.twig' %}
+    </body>
+</html>

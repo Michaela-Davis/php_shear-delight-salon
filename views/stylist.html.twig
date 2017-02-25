@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    {% include '/components/head.html.twig' %}
+    <body>
+        {% include '/components/headerBanner.html.twig' %}
+
+        <div class="container">
+            <div class="row" id="clients-page">
+                <div class="col-md-5">
+                    <div id="clients-list">
+                        <h1>{{stylist.getStylistName}} Clients</h1>
+                        <div class="row">
+                            <div>
+                            <form method="post" action="/add-client" id="add-client-form">
+                                <input type="text" name="name" placeholder="Client name">
+                                <br><br>
+                                <input type="text" name="phone" placeholder="Client phone">
+                                <input type="hidden" name="stylist_id" id="stylist_id" value="{{ stylist.getId }}">
+
+                            </div>
+                            <div id="add-client-button">
+                                <button class="btn btn-info" type="submit"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Client&nbsp;</button>
+                            </div>
+                            </form>
+                        </div>
+
+                        <br><br>
+                        {% if blank_form is not empty %}
+                            <p>Please enter a client name and phone number then resubmit!</p>
+                            <br><br>
+                            <p><a href="/stylists/{{stylist.getId}}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Return to Stylists page</a></p>
+                        {% else %}
+
+                            {% if clients is not empty %}
+                                <ul>
+                                    {% for client in clients %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <li>
+                                                <a href="/clients/{{ client.getClientId }}">{{client.getClientName}}</a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <form action="/clients/{{ client.getClientId}}/edit" method="post">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-1">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <form action="/clients/{{ client.getClientId}}" method="post">
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                            <p>There are no clients yet!</p>
+                            {% endif %}
+                        {% endif %}
+
+                        <p class="home-link"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                </div>
+            </div>
+
+        </div>
+        {% include '/components/footerBanner.html.twig' %}
+    </body>
+</html>

@@ -8,6 +8,8 @@
 
 _This web page (created using MySQL, Silex, and Twig) allows a user to input a client, view clients, input a stylist to search, and update or delete a client._
 
+## Epicodus / Tyler - all MySQL commands for this project
+
 ## Setup/Installation Requirements
 
 * Ensure [composer](https://getcomposer.org/) is installed on your computer.
@@ -15,7 +17,7 @@ _This web page (created using MySQL, Silex, and Twig) allows a user to input a c
 
 * In terminal run the following commands:
 
-1. _Fork and clone this repository from_ [gitHub](https://github.com/Michaela-Davis/php_shear-delight-salon.git).
+1. Fork and clone this repository from [gitHub](https://github.com/Michaela-Davis/php_shear-delight-salon.git).
 2. Click the Import tab in myPHPAdmin and choose your database file then click `Go`. Ensure MAMP is pointed is at the root directory.
 3. Navigate to the root directory of the project in which ever CLI shell you are using and run the command: `composer install`.
 4. To run tests enter `composer test` in terminal.
@@ -31,7 +33,7 @@ _This web page (created using MySQL, Silex, and Twig) allows a user to input a c
 | A user enters a new stylist | type in "Sami" | Stylist page reloads with "Sami" listed as a stylist |
 | A user enters a new client | type in "Michaela Davis, 1111 SE Stark St, Portland, OR, 406-899-0000" | Client page reloads with "Michaela" listed as a client |
 | A user clicks "delete" button on an existing client page | click "delete" on Michaela page | Page reloads with specific stylist page |
-| A user clicks "edit" button on an existing client page | enters "Dawn" | Client page reloads with "Dawn listed as a restaurant instead of "Michaela"|
+| A user clicks "edit" button on an existing client page | enters "Dawn" | Client page reloads with "Dawn listed as a client instead of "Michaela"|
 
 ## Known Bugs
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    {% include '/components/head.html.twig' %}
+    <body>
+        {% include '/components/headerBanner.html.twig' %}
+
+        <div class="container">
+            <div class="row" id="edit-client-page">
+                <div class="col-md-5">
+                    <div id="edit-client-details">
+                        <h1>Update {{client.getClientName}}</h1>
+                        <form method="post" action="/clients/{{client.getClientId}}" id="client-edit-form">
+                            <input type="hidden" value="patch" name="_method">
+
+                            <input type="hidden" name="cuisine_id" value="{{ client.getCuisineId }}">
+
+                            <label for="name">Update name:</label>
+                            <input type="text" name="name" id="name" value="{{ client.getClientName }}"><br><br>
+                            <label for="phone">Update phone:</label>
+                            <input type="text" name="phone" id="phone" value="{{ client.getKeywords }}"><br><br>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
+                        </form>
+
+                        <p class="home-link"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                </div>
+            </div>
+        </div>
+        {% include '/components/footerBanner.html.twig' %}
+    </body>
+</html>
