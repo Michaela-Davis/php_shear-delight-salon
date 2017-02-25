@@ -34,16 +34,16 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        function deleteStylist()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
-        }
-
         function updateStylist($new_name)
         {
             $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setStylistName($new_name);
+        }
+
+        function deleteStylist()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
 
         function getClients()
@@ -61,11 +61,6 @@
 
 
         /////     begin Static METHODS     /////
-        static function deleteAll()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM stylists;");
-        }
-
         static function getAll()
         {
             $all_stylists = array();
@@ -77,6 +72,11 @@
                 array_push($all_stylists, $new_stylist);
             }
             return $all_stylists;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists;");
         }
 
         static function findStylist($search_id)
@@ -91,9 +91,6 @@
             }
             return $found_stylist;
         }
-
-
         /////     end Static METHODS     /////
-
     }
 ?>

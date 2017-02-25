@@ -102,14 +102,6 @@
             }
             return $found_client;
         }
-
+        /////     end Static METHODS     /////
     }
-
-
-
-
-
-
-
-
 ?>

@@ -105,7 +105,7 @@
             $this->assertEquals("4068991111", $test_client->getClientName());
         }
 
-        function test_DeleteClient()
+        function test_deleteClient()
         {
             $id = null;
             $client_name = "Michaela";
