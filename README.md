@@ -8,7 +8,12 @@
 
 _This web page (created using MySQL, Silex, and Twig) allows a user to input a client, view clients, input a stylist to search, and update or delete a client._
 
-## Epicodus / Tyler - all MySQL commands for this project
+## Epicodus / Tyler - all MySQL commands for databases:
+* CREATE DATABASE hair_salon;
+* use hair_salon;
+* create table stylists (id serial PRIMARY KEY, name VARCHAR (100));
+* create table clients (id serial PRIMARY KEY, name VARCHAR (100), phone VARCHAR (15), stylist_id INT);
+* use hair_salon_test; (we were instructed in To do with MySQL 1 to copy databases in the phpMyAdmin screen)
 
 ## Setup/Installation Requirements
 
