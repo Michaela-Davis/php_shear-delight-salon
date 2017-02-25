@@ -87,23 +87,23 @@
             $this->assertEquals($new_client, $result);
         }
 
-        // function test_updateClient()
-        // {
-        //     $client_name = "Michaela";
-        //     $phone = "4068990000";
-        //     $stylist_id = 1;
-        //     $id = null;
-        //     $test_client = new Client($id, $client_name, $phone, $stylist_id);
-        //     $new_client->save();
-        //
-        //     $new_value = "4068991111";
-        //
-        //     /// Act   ///
-        //     $test_client->updateClient($new_value, $phone);
-        //
-        //     /// Assert ///
-        //     $this->assertEquals("4068991111", $test_client->getClientName());
-        // }
+        function test_updateClient()
+        {
+            $id = null;
+            $client_name = "Michaela";
+            $phone = "4068990000";
+            $stylist_id = 1;
+            $test_client = new Client($id, $client_name, $phone, $stylist_id);
+            $test_client->save();
+
+            $new_value = "4068991111";
+
+            /// Act   ///
+            $test_client->updateClient($new_value, $phone);
+
+            /// Assert ///
+            $this->assertEquals("4068991111", $test_client->getClientName());
+        }
 
         // function test_DeleteClient()
         // {
