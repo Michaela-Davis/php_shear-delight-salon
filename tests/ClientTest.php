@@ -105,27 +105,26 @@
             $this->assertEquals("4068991111", $test_client->getClientName());
         }
 
-        // function test_DeleteClient()
-        // {
-        //     $restaurant_name = "Matador";
-        //     $address = "1234 N Peach Lane, Portland OR";
-        //     $keywords = "yummy, cheap, spicy";
-        //     $cuisine_id = 1;
-        //     $id = null;
-        //     $test_restaurant = new Client($restaurant_name, $address, $keywords, $cuisine_id, $id);
-        //     $test_restaurant->save();
-        //
-        //     $restaurant_name2 = "Sivalai Thai";
-        //     $address2 = "5678 W Bark Road, Portland OR";
-        //     $keywords2 = "pricy, friendly";
-        //     $cuisine_id2 = 2;
-        //     $new_restaurant2 = new Client($restaurant_name2, $address2, $keywords2, $cuisine_id2);
-        //     $new_restaurant2->save();
-        //
-        //     $test_restaurant->deleteClient();
-        //
-        //     $this->assertEquals([$new_restaurant2], Client::getAll());
-        // }
+        function test_DeleteClient()
+        {
+            $id = null;
+            $client_name = "Michaela";
+            $phone = "4068990000";
+            $stylist_id = 1;
+            $test_client = new Client($id, $client_name, $phone, $stylist_id);
+            $test_client->save();
+
+            $id2 = null;
+            $client_name2 = "Dawn";
+            $phone2 = "5038990000";
+            $stylist_id2 = 2;
+            $test_client2 = new Client($id2, $client_name2, $phone2, $stylist_id2);
+            $test_client2->save();
+
+            $test_client->deleteClient();
+
+            $this->assertEquals([$test_client2], Client::getAll());
+        }
 
     }
 ?>
