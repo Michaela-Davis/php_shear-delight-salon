@@ -45,6 +45,18 @@
             $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setStylistName($new_name);
         }
+
+        function getClients()
+        {
+            $found_clients = array();
+            $all_clients = Client::getAll();
+            foreach($all_clients as $client) {
+                if ($client->getStylistId() == $this->getId()) {
+                    array_push($found_clients, $client);
+                }
+            }
+            return $found_clients;
+        }
         /////     end METHODS     /////
 
 
