@@ -28,6 +28,7 @@
         return $app['twig']->render('homeView.html.twig', array('stylists'=> Stylist::getAll(), 'blank_form' => $blank_form));
     });
 
+    ///////////      begin STYLIST ROUTES       ///////////
     $app->post("/add-stylist", function() use ($app) {
         $new_stylist_name = $_POST['name'];
         $new_stylist_name = str_replace("'", "", $new_stylist_name);
@@ -72,6 +73,62 @@
         $blank_form = array();
         return $app['twig']->render('homeView.html.twig', array('stylists' => Stylist::getAll(), 'blank_form' => $blank_form));
     });
+    ///////////      end STYLIST ROUTES       ///////////
+
+
+    ///////////      begin Client ROUTES       ///////////
+    $app->post("/add-client", function() use ($app) {
+        $id = null;
+        $new_client_name = $_POST['name'];
+        $new_client_name = str_replace("'", "", $new_client_name);
+        $new_client_phone = $_POST['phone'];
+        $blank_form = array();
+        if (!$new_client_name || !$new_client_phone) {
+            array_push($blank_form, "empty");
+        } else {
+            $new_client = new Client($id, $new_client_name, $new_client_phone, $_POST['stylist_id']);
+            $new_client->save();
+        }
+        $stylist = Stylist::findStylist($_POST['stylist_id']);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients(), 'blank_form' => $blank_form));
+    });
+
+    $app->get("/clients/{id}", function($id) use ($app) {
+        $search_client = Client::findClient($id);
+        return $app['twig']->render('client.html.twig', array('client' => $search_client));
+    });
+
+    $app->get("/clients/{id}/edit", function($id) use ($app) {
+        $client = Client::findClient($id);
+        $stylist = Stylist::findStylist($id);
+        return $app['twig']->render('clientEdit.html.twig', array('client' => $client, 'stylist' => $stylist));
+    });
+
+    $app->post("/clients/{id}/edit", function($id) use ($app) {
+        $client = Client::findClient($id);
+        return $app['twig']->render('clientEdit.html.twig', array('client' => $client));
+    });
+
+    $app->patch("/clients/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $this_client = Client::findClient($id);
+        $this_client->updateClient($name, $phone);
+        $stylist = Stylist::findStylist($this_client->getStylistId());
+        $blank_form = array();
+        return $app['twig']->render('stylist.html.twig', array('client' => $this_client, 'clients' => $stylist->getClients(), 'stylist' => $stylist, 'blank_form' => $blank_form));
+    });
+
+    $app->delete("/clients/{id}", function($id) use ($app) {
+        $client = Client::findClient($id);
+        $client_stylist_id = $client->getStylistId();
+        $stylist = Stylist::findStylist($client_stylist_id);
+        $client->deleteClient();
+        $blank_form = array();
+        return $app['twig']->render('stylist.html.twig', array('clients' => $stylist->getClients(), 'stylist' => $stylist, 'blank_form' => $blank_form));
+    });
+
+    ///////////      end Client ROUTES       ///////////
 
     return $app;
 ?>
